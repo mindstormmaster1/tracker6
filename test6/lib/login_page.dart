@@ -1,7 +1,9 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -11,21 +13,36 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  // text controllers
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  Future signIn() async {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: _emailController.text.trim(),
+      password: _passwordController.text.trim(),
+    );
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(
-                  Icons.baby_changing_station,
-                  size: 200,
-                  color: Colors.deepPurple,
-                ),
+                Lottie.network(
+                    'https://assets9.lottiefiles.com/packages/lf20_asfmysln.json'),
                 Text(
                   'Baby Tracker',
                   style: GoogleFonts.bebasNeue(
@@ -39,18 +56,19 @@ class _LoginPageState extends State<LoginPage> {
                     fontSize: 24,
                   ),
                 ),
-                SizedBox(height: 48),
+                SizedBox(height: 24),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25),
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Container(
                     decoration: BoxDecoration(
-                      color: Colors.grey[200],
+                      color: Colors.grey[300],
                       border: Border.all(color: Colors.white),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Padding(
                       padding: const EdgeInsets.only(left: 20),
                       child: TextField(
+                        controller: _emailController,
                         decoration: InputDecoration(
                             border: InputBorder.none, hintText: "Email"),
                       ),
@@ -59,16 +77,17 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 SizedBox(height: 12),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25),
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Container(
                     decoration: BoxDecoration(
-                      color: Colors.grey[200],
+                      color: Colors.grey[300],
                       border: Border.all(color: Colors.white),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Padding(
                       padding: const EdgeInsets.only(left: 20),
                       child: TextField(
+                        controller: _passwordController,
                         obscureText: true,
                         decoration: InputDecoration(
                             border: InputBorder.none, hintText: "Password"),
@@ -79,20 +98,23 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(height: 12),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                  child: Container(
-                    padding: EdgeInsets.all(20),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: Colors.deepPurple,
-                      border: Border.all(color: Colors.white),
-                    ),
-                    child: Center(
-                      child: Text(
-                        'Sign In',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
+                  child: GestureDetector(
+                    onTap: signIn,
+                    child: Container(
+                      padding: EdgeInsets.all(20),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Color.fromRGBO(123, 220, 181, 1),
+                        border: Border.all(color: Colors.white),
+                      ),
+                      child: Center(
+                        child: Text(
+                          'Sign In',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                          ),
                         ),
                       ),
                     ),
@@ -111,7 +133,7 @@ class _LoginPageState extends State<LoginPage> {
                     Text(
                       " Sign Up!",
                       style: TextStyle(
-                        color: Colors.deepPurple,
+                        color: Color.fromRGBO(123, 220, 181, 1),
                         fontWeight: FontWeight.bold,
                       ),
                     )

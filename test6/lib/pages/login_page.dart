@@ -1,9 +1,8 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lottie/lottie.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:lottie/lottie.dart';
 
 class LoginPage extends StatefulWidget {
   final VoidCallback showRegisterPage;
@@ -42,9 +41,9 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                /*Lottie.network(
+                Lottie.network(
                     'https://assets9.lottiefiles.com/packages/lf20_asfmysln.json',
-                    repeat: false),*/
+                    repeat: false),
                 Text(
                   'Baby Tracker',
                   style: GoogleFonts.bebasNeue(

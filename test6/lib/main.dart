@@ -1,9 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:test6/auth/main_page.dart';
 import 'auth/auth_page.dart';
-import 'pages/login_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 Future main() async {

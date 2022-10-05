@@ -42,11 +42,11 @@ class _RegisterPageState extends State<RegisterPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                /*Lottie.network(
+                Lottie.network(
                   'https://assets9.lottiefiles.com/packages/lf20_asfmysln.json',
                   repeat: false,
                   frameRate: FrameRate.max,
-                ),*/
+                ),
                 Text(
                   'Welcome!',
                   style: GoogleFonts.bebasNeue(

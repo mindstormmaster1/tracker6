@@ -6,7 +6,8 @@ import 'package:lottie/lottie.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  final VoidCallback showRegisterPage;
+  const LoginPage({Key? key, required this.showRegisterPage}) : super(key: key);
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -41,8 +42,9 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Lottie.network(
-                    'https://assets9.lottiefiles.com/packages/lf20_asfmysln.json'),
+                /*Lottie.network(
+                    'https://assets9.lottiefiles.com/packages/lf20_asfmysln.json',
+                    repeat: false),*/
                 Text(
                   'Baby Tracker',
                   style: GoogleFonts.bebasNeue(
@@ -51,7 +53,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 SizedBox(height: 12),
                 Text(
-                  'Sign Up Today for Instant Peace of Mind',
+                  'Designed to Give You Instant Peace of Mind',
                   style: TextStyle(
                     fontSize: 24,
                   ),
@@ -130,11 +132,14 @@ class _LoginPageState extends State<LoginPage> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    Text(
-                      " Sign Up!",
-                      style: TextStyle(
-                        color: Color.fromRGBO(123, 220, 181, 1),
-                        fontWeight: FontWeight.bold,
+                    GestureDetector(
+                      onTap: widget.showRegisterPage,
+                      child: Text(
+                        " Sign Up!",
+                        style: TextStyle(
+                          color: Color.fromRGBO(123, 220, 181, 1),
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     )
                   ],
